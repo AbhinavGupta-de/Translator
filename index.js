@@ -1,4 +1,5 @@
 import { fetchTranslate } from './fetchTranslation.js';
+import { fetchHtmlBody } from './fetchHtmlBody.js';
 
 /**
  * Translates the given value based on the type.
@@ -8,8 +9,20 @@ import { fetchTranslate } from './fetchTranslation.js';
  * @param {string} sourceLanguage - The language of the value to translate.
  * @param {string} targetLangauge - The target language to translate the value to.
  */
-const translate = (type, value, sourceLanguage, targetLangauge) => {
+
+async function getHtmlBody (url,sourceLanguage,tragetLaungauge){
+	fetchHtmlBody(url).then((body) => {
+		translate('text',body.trim(), sourceLanguage, tragetLaungauge);
+	})
+}
+
+const translate = (type, value, sourceLanguage, targetLaungauge) => {
+
 	switch (type) {
+		case 'url':
+			getHtmlBody(value,sourceLanguage,tragetLaungauge);
+			//translate('text',fetchBody(value), sourceLanguage, tragetLaungauge);
+			break;
 		case 'text':
 			translateText(value, sourceLanguage, targetLangauge);
 			break;
@@ -30,7 +43,10 @@ const translateText = (text, sourceLanguage, targetLangauge) => {
 	});
 };
 
+
+
 const translateDOM = (element, sourceLanguage, targetLangauge) => {
+
 	if (element instanceof Element) {
 		//Function of task1
 		//task1(element, sourceLanguage, targetLangauge);
@@ -39,4 +55,3 @@ const translateDOM = (element, sourceLanguage, targetLangauge) => {
 	}
 }
 
-translate('text', 'This is my name', 1, 2);
