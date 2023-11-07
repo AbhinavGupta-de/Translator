@@ -30,7 +30,7 @@ const fetchTranslate = async (source, content, target) => {
 	try {
 		const response = await axios.post(`${API_URL}`, req);
 		// console.log(response.data);
-		return response.data;
+		return response.data.translated_content;
 	} catch (error) {
 		console.error(error);
 	}
