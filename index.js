@@ -7,9 +7,8 @@ import { fetchHtmlBody } from './fetchHtmlBody.js';
  * @param {string} type - The type of value to translate. Can be 'text' or 'file'.
  * @param {string} value - The value to translate. Can be a string or a file path.
  * @param {string} sourceLanguage - The language of the value to translate.
- * @param {string} targetLaungauge - The target language to translate the value to.
+ * @param {string} targetLangauge - The target language to translate the value to.
  */
-
 
 async function getHtmlBody (url,sourceLanguage,tragetLaungauge){
 	fetchHtmlBody(url).then((body) => {
@@ -18,37 +17,39 @@ async function getHtmlBody (url,sourceLanguage,tragetLaungauge){
 }
 
 const translate = (type, value, sourceLanguage, targetLaungauge) => {
+
 	switch (type) {
 		case 'url':
 			getHtmlBody(value,sourceLanguage,tragetLaungauge);
 			//translate('text',fetchBody(value), sourceLanguage, tragetLaungauge);
 			break;
 		case 'text':
-			translateText(value, sourceLanguage, targetLaungauge);
+			translateText(value, sourceLanguage, targetLangauge);
 			break;
 		case 'file':
-			translateFile(value, sourceLanguage, targetLaungauge);
+			translateFile(value, sourceLanguage, targetLangauge);
 			break;
 		case 'dom':
-			translateDOM(value, sourceLanguage, targetLaungauge);
+			translateDOM(value, sourceLanguage, targetLangauge);
 		default:
 			console.log('Invalid type');
 			break;
 	}
 };
 
-const translateText = (text, sourceLanguage, targetLaungauge) => {
-	fetchTranslate(sourceLanguage, text, targetLaungauge).then((data) => {
+const translateText = (text, sourceLanguage, targetLangauge) => {
+	fetchTranslate(sourceLanguage, text, targetLangauge).then((data) => {
 		console.log(data);
 	});
 };
 
-translate('url', 'https://gen-quo.vercel.app/gen/', 1, 2);
 
-const translateDOM = (element, sourceLanguage, targetLaungauge) => {
+
+const translateDOM = (element, sourceLanguage, targetLangauge) => {
+
 	if (element instanceof Element) {
 		//Function of task1
-		//task1(element, sourceLanguage, targetLaungauge);
+		//task1(element, sourceLanguage, targetLangauge);
 	} else {
 		return "Not a DOM element";
 	}
