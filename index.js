@@ -16,6 +16,8 @@ const translate = (type, value, sourceLanguage, tragetLaungauge) => {
 		case 'file':
 			translateFile(value, sourceLanguage, tragetLaungauge);
 			break;
+		case 'dom':
+			translateDOM(value, sourceLanguage, tragetLaungauge);
 		default:
 			console.log('Invalid type');
 			break;
@@ -27,5 +29,14 @@ const translateText = (text, sourceLanguage, tragetLaungauge) => {
 		console.log(data);
 	});
 };
+
+const translateDOM = (element, sourceLanguage, tragetLaungauge) => {
+	if (element instanceof Element) {
+		//Function of task1
+		//task1(element, sourceLanguage, tragetLaungauge);
+	} else {
+		return "Not a DOM element";
+	}
+}
 
 translate('text', 'This is my name', 1, 2);
