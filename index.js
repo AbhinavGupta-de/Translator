@@ -30,7 +30,7 @@ const translate = (type, value, sourceLanguage, targetLangauge) => {
 
 async function getHtmlBody(url, sourceLanguage, targetLangauge) {
 	fetchHtmlBody(url).then((body) => {
-		translate('text', body.trim(), sourceLanguage, targetLangauge);
+		translate('dom', body.trim(), sourceLanguage, targetLangauge);
 	});
 }
 
