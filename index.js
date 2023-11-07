@@ -2,25 +2,16 @@ import { fetchTranslate } from './fetchTranslation.js';
 import { fetchHtmlBody } from './fetchHtmlBody.js';
 
 /**
- * Translates the given value based on the type.
- *
- * @param {string} type - The type of value to translate. Can be 'text' or 'file'.
- * @param {string} value - The value to translate. Can be a string or a file path.
- * @param {string} sourceLanguage - The language of the value to translate.
- * @param {string} targetLangauge - The target language to translate the value to.
+ * Translates the given input based on the type of input.
+ * @param {string} type - The type of input. Can be 'url', 'text', 'file', or 'dom'.
+ * @param {string} value - The input to be translated.
+ * @param {string} sourceLanguage - The language of the input.
+ * @param {string} targetLanguage - The language to translate the input to.
  */
-
-async function getHtmlBody (url,sourceLanguage,tragetLaungauge){
-	fetchHtmlBody(url).then((body) => {
-		translate('text',body.trim(), sourceLanguage, tragetLaungauge);
-	})
-}
-
-const translate = (type, value, sourceLanguage, targetLaungauge) => {
-
+const translate = (type, value, sourceLanguage, targetLangauge) => {
 	switch (type) {
 		case 'url':
-			getHtmlBody(value,sourceLanguage,tragetLaungauge);
+			getHtmlBody(value, sourceLanguage, targetLangauge);
 			//translate('text',fetchBody(value), sourceLanguage, tragetLaungauge);
 			break;
 		case 'text':
@@ -37,21 +28,23 @@ const translate = (type, value, sourceLanguage, targetLaungauge) => {
 	}
 };
 
+async function getHtmlBody(url, sourceLanguage, targetLangauge) {
+	fetchHtmlBody(url).then((body) => {
+		translate('text', body.trim(), sourceLanguage, targetLangauge);
+	});
+}
+
 const translateText = (text, sourceLanguage, targetLangauge) => {
 	fetchTranslate(sourceLanguage, text, targetLangauge).then((data) => {
 		console.log(data);
 	});
 };
 
-
-
 const translateDOM = (element, sourceLanguage, targetLangauge) => {
-
 	if (element instanceof Element) {
 		//Function of task1
 		//task1(element, sourceLanguage, targetLangauge);
 	} else {
-		return "Not a DOM element";
+		return 'Not a DOM element';
 	}
-}
-
+};
