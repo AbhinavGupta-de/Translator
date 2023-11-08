@@ -1,3 +1,4 @@
+// Import necessary functions for translation and HTML content retrieval.
 import { fetchTranslate } from './fetchTranslation.js';
 import { fetchHtmlBody } from './fetchHtmlBody.js';
 
@@ -8,42 +9,50 @@ import { fetchHtmlBody } from './fetchHtmlBody.js';
  * @param {string} sourceLanguage - The language of the input.
  * @param {string} targetLanguage - The language to translate the input to.
  */
-const translate = (type, value, sourceLanguage, targetLangauge) => {
+const translate = (type, value, sourceLanguage, targetLanguage) => {
 	switch (type) {
 		case 'url':
-			getHtmlBody(value, sourceLanguage, targetLangauge);
-			//translate('text',fetchBody(value), sourceLanguage, tragetLaungauge);
+			// If the input type is a URL, fetch the HTML body and translate it as DOM.
+			getHtmlBody(value, sourceLanguage, targetLanguage);
 			break;
 		case 'text':
-			translateText(value, sourceLanguage, targetLangauge);
+			// If the input type is text, directly translate the text.
+			translateText(value, sourceLanguage, targetLanguage);
 			break;
 		case 'file':
-			translateFile(value, sourceLanguage, targetLangauge);
+			// If the input type is a file, translate the content of the file.
+			translateFile(value, sourceLanguage, targetLanguage);
 			break;
 		case 'dom':
-			translateDOM(value, sourceLanguage, targetLangauge);
+			// If the input type is a DOM element, perform DOM translation (Task 1).
+			// You can call a function like task1(element, sourceLanguage, targetLanguage) here.
+			break;
 		default:
 			console.log('Invalid type');
 			break;
 	}
 };
 
-async function getHtmlBody(url, sourceLanguage, targetLangauge) {
+// Function to fetch HTML body from a URL and trigger DOM translation.
+async function getHtmlBody(url, sourceLanguage, targetLanguage) {
 	fetchHtmlBody(url).then((body) => {
-		translate('dom', body.trim(), sourceLanguage, targetLangauge);
+		// Translate the retrieved HTML body as DOM.
+		translate('dom', body.trim(), sourceLanguage, targetLanguage);
 	});
 }
 
-const translateText = (text, sourceLanguage, targetLangauge) => {
-	fetchTranslate(sourceLanguage, text, targetLangauge).then((data) => {
+// Function to translate text directly.
+const translateText = (text, sourceLanguage, targetLanguage) => {
+	fetchTranslate(sourceLanguage, text, targetLanguage).then((data) => {
 		console.log(data);
 	});
 };
 
-const translateDOM = (element, sourceLanguage, targetLangauge) => {
+// Function to translate a DOM element (Task 1).
+const translateDOM = (element, sourceLanguage, targetLanguage) => {
 	if (element instanceof Element) {
-		//Function of task1
-		//task1(element, sourceLanguage, targetLangauge);
+		// You can implement translation for DOM elements here.
+		// For example, you can use the DOM API to traverse and modify the DOM.
 	} else {
 		return 'Not a DOM element';
 	}

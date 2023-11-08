@@ -1,38 +1,26 @@
 import axios from 'axios';
 
-// const LANG = {
-//  English: 1,
-//  Hindi: 2,
-//  Bengali: 3,
-//  Gujarati: 4,
-//  Kannada: 5,
-//  Malayalam: 6,
-//  Marathi: 7,
-//  Odia: 8,
-//  Punjabi: 9,
-//  Tamil: 10,
-//  Telugu: 11,
-//  Assamese: 12,
-// };
-
+// API endpoint for translation
 const API_URL = 'https://bhashiniproject.up.railway.app/translate';
 
 /**
- * Fetches translation from API
- * @param {string} source - The source language code
- * @param {string} content - The content to be translated
- * @param {string} target - The target language code
- * @returns {Promise<string>} - The translated content
+ * Fetches translation from the API.
+ * @param {string} source - The source language code.
+ * @param {string} content - The content to be translated.
+ * @param {string} target - The target language code.
+ * @returns {Promise<string>} - A promise that resolves to the translated content.
  */
 const fetchTranslate = async (source, content, target) => {
-	const req = { source, content, target };
+	const req = { source, content, target }; // Create a request object with source, content, and target languages.
 
 	try {
-		const response = await axios.post(`${API_URL}`, req);
-		// console.log(response.data);
+		const response = await axios.post(`${API_URL}`, req); // Send a POST request to the translation API.
+
+		// Return the translated content received from the API response.
 		return response.data;
 	} catch (error) {
-		console.error(error);
+		console.error(error); // Log any errors that occur during the request.
 	}
 };
+
 export { fetchTranslate };
